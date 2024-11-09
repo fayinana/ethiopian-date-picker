@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Arrow button styles with SVG icons
 const ArrowButton = styled.button`
   display: inline-flex;
   align-items: center;
@@ -25,21 +24,18 @@ const ArrowButton = styled.button`
   }
 `;
 
-// Left Arrow Button with SVG
 const LeftArrowButton = styled(ArrowButton)`
   &::before {
     content: "";
   }
 `;
 
-// Right Arrow Button with SVG
 const RightArrowButton = styled(ArrowButton)`
   &::after {
     content: "";
   }
 `;
 
-// Scroll (display area for the year and month)
 const Scroll = styled.div`
   font-size: 24px;
   font-weight: bold;

@@ -1,10 +1,17 @@
-import Button from "./ui/Button";
-import Year from "./ui/Year";
+import { useState } from "react";
+import Picker from "./components/Picker";
+
 export default function App() {
+  const [date, setDate] = useState<Date | null>(new Date());
+  console.log(date);
+
   return (
-    <div>
-      <Year>Jan 2026</Year>
-      <Button>click me</Button>
+    <div style={{ height: "10000px" }}>
+      <Picker date={date} setDate={setDate} width="330px" height="350px">
+        <Picker.Header />
+        <Picker.Calendar />
+        <Picker.Footer />
+      </Picker>
     </div>
   );
 }
