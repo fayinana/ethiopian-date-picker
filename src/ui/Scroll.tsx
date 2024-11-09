@@ -5,5 +5,4 @@ const Scroll = styled.text`
   height: 30px;
   margin: 0 30px;
 `;
-
 export default Scroll;
