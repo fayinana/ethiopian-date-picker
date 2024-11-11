@@ -1,17 +1,26 @@
+// App.tsx
 import { useState } from "react";
-import Picker from "./components/Picker";
+import DatePicker from "./components/DatePicker";
 
 export default function App() {
   const [date, setDate] = useState<Date | null>(new Date());
-  console.log(date);
 
   return (
-    <div style={{ height: "10000px" }}>
-      <Picker date={date} setDate={setDate} width="330px" height="350px">
-        <Picker.Header />
-        <Picker.Calendar />
-        <Picker.Footer />
-      </Picker>
+    <div>
+      <DatePicker
+        date={date}
+        setDate={setDate}
+        primaryColor="#4ab2e2"
+        secondaryColor="#f8f8f8"
+        bgColor="#cdebf8"
+        textColor="#0f0152"
+        width="100px"
+        height="200px"
+      >
+        <DatePicker.Header />
+        <DatePicker.Calendar />
+        <DatePicker.Footer />
+      </DatePicker>
     </div>
   );
 }

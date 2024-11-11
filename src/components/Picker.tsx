@@ -86,6 +86,7 @@ interface DatePickerContextType {
   setDate: (date: Date | string | null) => void;
   position: { x: number; y: number };
   setPosition: (position: { x: number; y: number }) => void;
+  daysName: [string];
 }
 
 const DatePickerContext = createContext<DatePickerContextType | undefined>(
@@ -108,6 +109,9 @@ interface PickerProps {
   setDate: (date: Date | string | null) => void;
   width: string;
   height: string;
+  style: object;
+  class: string;
+  daysName: [string];
 }
 
 const Picker: FC<PickerProps> & {
@@ -115,7 +119,15 @@ const Picker: FC<PickerProps> & {
   Calendar: FC;
   Day: FC<{ day: number | null }>;
   Footer: FC;
-} = ({ children, date, setDate, width = "100%", height = "100%" }) => {
+} = ({
+  children,
+  date,
+  setDate,
+  width = "100%",
+  height = "100%",
+  style = {},
+  daysName = ["Sun", "Mon", "Tus", "Wen", "Thr", "Fri", "Sat"],
+}) => {
   const dateValue = new Date(date || new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [displayDate, setDisplayDate] = useState<Date>(dateValue);
@@ -124,7 +136,7 @@ const Picker: FC<PickerProps> & {
     x: 0,
     y: 0,
   });
-  const dateFormat = "MM/dd/yyyy"; // Can be constant as it doesn't change
+  const dateFormat = "MM/dd/yyyy";
 
   const goToNextMonth = useCallback(() => {
     setDisplayDate(
@@ -154,7 +166,7 @@ const Picker: FC<PickerProps> & {
     setIsOpen((prev) => !prev);
   };
 
-  const { ref } = useOutSideClick(() => setIsOpen(false)); // This triggers when clicked outside
+  const { ref } = useOutSideClick(() => setIsOpen(false));
 
   const contextValue = {
     selectedDate,
@@ -172,6 +184,7 @@ const Picker: FC<PickerProps> & {
     setDate,
     position,
     setPosition,
+    daysName,
   };
 
   return (
@@ -180,6 +193,7 @@ const Picker: FC<PickerProps> & {
       {isOpen &&
         createPortal(
           <StyledContainer
+            style={{ ...style }}
             height={height}
             width={width}
             ref={ref}
@@ -194,24 +208,34 @@ const Picker: FC<PickerProps> & {
 };
 
 function Toggler() {
-  const { togglePicker, setPosition } = useDatePickerContext();
+  const { togglePicker, setPosition, selectedDate, displayDate } =
+    useDatePickerContext();
 
-  // Update position relative to the button, including scroll
+  const [{ day, month, year }, setInputDate] = useState({
+    day: new Date(selectedDate)?.getDay() || "",
+    month: new Date(displayDate)?.getMonth() || "",
+    year: new Date(displayDate)?.getFullYear() || "",
+  });
+  useEffect(() => {
+    setInputDate({
+      day: new Date(selectedDate)?.getDate(),
+      month: new Date(displayDate)?.getMonth(),
+      year: new Date(displayDate)?.getFullYear(),
+    });
+  }, [displayDate, selectedDate]);
+
   function handleClick(e) {
     const rect = e.target.closest("button").getBoundingClientRect();
     togglePicker();
     setPosition({
-      x: rect.left, // Position from the left of the viewport
-      y: rect.top + rect.height + window.scrollY + 8, // Position below the button, accounting for scroll
+      x: rect.left,
+      y: rect.top + rect.height + window.scrollY + 8,
     });
   }
 
   return (
-    <button
-      style={{ position: "absolute", top: "120px", left: "50%" }}
-      onClick={handleClick}
-    >
-      toggle
+    <button onClick={handleClick}>
+      <span>{day}</span>/<span>{month + 1}</span>/<span>{year}</span>
     </button>
   );
 }
@@ -242,7 +266,7 @@ const Header: FC = () => {
 };
 
 const Calendar: FC = () => {
-  const { displayDate } = useDatePickerContext();
+  const { displayDate, daysName } = useDatePickerContext();
   const daysInMonth = new Date(
     displayDate.getFullYear(),
     displayDate.getMonth() + 1,
@@ -261,7 +285,7 @@ const Calendar: FC = () => {
 
   return (
     <WeekDays>
-      {["እሁ", "ሰኝ", "ማክ", "እሮ", "ሃሙ", "አር", "ቅዳ"].map((d) => (
+      {daysName.map((d) => (
         <DayButton key={d} active={false} style={{ textAlign: "center" }}>
           {d}
         </DayButton>
@@ -297,12 +321,16 @@ const Day: FC<{ day: number | null }> = ({ day }) => {
 const Footer: FC = () => {
   const { selectedDate, togglePicker, setDate } = useDatePickerContext();
 
+  function handleSubmit() {
+    setDate(selectedDate);
+    togglePicker();
+  }
   return (
     <GroupButton>
       <Button variation="secondary" onClick={togglePicker}>
         Cancel
       </Button>
-      <Button variation="primary" onClick={() => setDate(selectedDate)}>
+      <Button variation="primary" onClick={handleSubmit}>
         Submit
       </Button>
     </GroupButton>

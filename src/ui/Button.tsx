@@ -4,17 +4,17 @@ type Variation = "primary" | "secondary";
 
 const variations: Record<Variation, ReturnType<typeof css>> = {
   primary: css`
-    color: whitesmoke;
-    background: #8692fa;
+    color: var(--text-color);
+    background: var(--primary-color);
     &:hover {
-      background: #7885fa;
+      background: var(--primary-color);
     }
   `,
   secondary: css`
-    color: black;
-    background: #ffffff;
+    color: var(--text-color);
+    background: var(--secondary-color);
     &:hover {
-      background: #f5f5f5;
+      background: var(--secondary-color);
     }
   `,
 };
