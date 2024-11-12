@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { useDatePickerContext } from "../context/DatePickerProvider";
-import { GroupButton } from "../styles/DatePickerStyles";
-import Button from "../ui/Button";
+import { GroupButton,FooterButton } from "../styles/DatePickerStyles";
 
 const Footer: FC = () => {
   const { selectedDate, togglePicker, setDate } = useDatePickerContext();
@@ -12,12 +11,12 @@ const Footer: FC = () => {
   }
   return (
     <GroupButton>
-      <Button variation="secondary" onClick={togglePicker}>
+      <FooterButton variation="secondary" onClick={togglePicker}>
         Cancel
-      </Button>
-      <Button variation="primary" onClick={handleSubmit}>
+      </FooterButton>
+      <FooterButton variation="primary" onClick={handleSubmit}>
         Submit
-      </Button>
+      </FooterButton>
     </GroupButton>
   );
 };

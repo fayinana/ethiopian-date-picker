@@ -22,6 +22,8 @@ interface DatePickerProps {
   secondaryColor?: string;
   bgColor?: string;
   textColor?: string;
+  fontFamily?: string;
+  isDarkMode?: boolean;
 }
 
 const DatePicker: FC<DatePickerProps> & {
@@ -36,10 +38,12 @@ const DatePicker: FC<DatePickerProps> & {
   height = "100%",
   style = {},
   daysName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-  primaryColor = "#05082a",
-  secondaryColor = "#ffffff",
-  textColor = "#b92626",
-  bgColor = "#f5f5f5",
+  primaryColor,
+  secondaryColor,
+  textColor,
+  bgColor,
+  fontFamily,
+  isDarkMode = true,
 }) => {
   const dateValue = new Date(date || new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -133,12 +137,14 @@ const DatePicker: FC<DatePickerProps> & {
   };
 
   return (
-    <DatePickerContextProvider value={contextValue}>
+    <DatePickerContextProvider value = {contextValue}>
       <GlobalStyles
         primaryColor={primaryColor}
         secondaryColor={secondaryColor}
         textColor={textColor}
         bgColor={bgColor}
+        fontFamily={fontFamily}
+        isDarkMode={isDarkMode}
       />
 
       <Toggler />

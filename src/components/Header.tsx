@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useDatePickerContext } from "../context/DatePickerProvider";
-import { HeaderButton, StyledHeader } from "../styles/DatePickerStyles";
+import { HeaderButton, StyledHeader, DateScroll } from "../styles/DatePickerStyles";
+import { LeftArrowSVG, RightArrowSVG } from "../styles/ArrowButton";
 
 const Header: FC = () => {
   const {
@@ -13,16 +14,16 @@ const Header: FC = () => {
 
   return (
     <StyledHeader>
-      <HeaderButton onClick={goToPrevYear}>&larr;</HeaderButton>
-      <HeaderButton onClick={goToPrevMonth}>&larr;</HeaderButton>
-      <span>
+      <HeaderButton onClick={goToPrevYear}><LeftArrowSVG double/></HeaderButton>
+      <HeaderButton onClick={goToPrevMonth}><LeftArrowSVG /></HeaderButton>
+      <DateScroll>
         {displayDate.toLocaleDateString("default", {
           month: "long",
           year: "numeric",
         })}
-      </span>
-      <HeaderButton onClick={goToNextMonth}>&rarr;</HeaderButton>
-      <HeaderButton onClick={goToNextYear}>&rarr;</HeaderButton>
+      </DateScroll>
+      <HeaderButton onClick={goToNextMonth}><RightArrowSVG /></HeaderButton>
+      <HeaderButton onClick={goToNextYear}><RightArrowSVG double/></HeaderButton>
     </StyledHeader>
   );
 };

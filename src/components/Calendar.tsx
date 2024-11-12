@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { useDatePickerContext } from "../context/DatePickerProvider";
-import { WeekDays } from "../styles/DatePickerStyles";
-import DayButton from "../ui/Day";
+import { WeekDays,DayButton } from "../styles/DatePickerStyles";
 import Day from "./Day";
 import useKeyboardNavigation from "../hooks/useKeyboardNavigation";
 
@@ -28,13 +27,14 @@ const Calendar: FC = () => {
   return (
     <WeekDays>
       {daysName.map((d) => (
-        <DayButton key={d} active={false} style={{ textAlign: "center" }}>
+        <DayButton key={d} isDay={d == null} active={false} style={{ textAlign: "center" }}>
           {d}
         </DayButton>
       ))}
-      {days.map((day, index) => (
-        <Day key={index} day={day} />
-      ))}
+    {days.map((day, index) => (
+      <Day key={index} day={day} isDay={day !== null} />
+    ))}
+
     </WeekDays>
   );
 };
