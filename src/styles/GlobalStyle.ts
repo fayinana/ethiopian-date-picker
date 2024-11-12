@@ -10,10 +10,10 @@ interface GlobalStyleProps {
 
 const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
   :root {
-    --primary-color: ${(props) => props.primaryColor || "#f591fa"};
-    --secondary-color: ${(props) => props.secondaryColor || "#ffffff"};
-    --text-color:${(props) => props.textColor || "#000"}
-    --background-color : ${(props) => props.bgColor || "#f5f5f5"}
+    --primary-color: ${(props) => props.primaryColor || "#ac5eba"};
+    --secondary-color: ${(props) => props.secondaryColor || "#f5f5f5"};
+    --text-color: ${(props) => props.textColor || "#000"};
+    --background-color: ${(props) => props.bgColor || "#fff"};
   }
 `;
 

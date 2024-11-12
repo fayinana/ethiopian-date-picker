@@ -33,7 +33,7 @@ const useKeyboardNavigation = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [navigateTo, togglePicker]); // Ensure dependencies are correct
+  }, [navigateTo, togglePicker]);
 };
 
 export default useKeyboardNavigation;

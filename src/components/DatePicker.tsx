@@ -77,55 +77,39 @@ const DatePicker: FC<DatePickerProps> & {
   const togglePicker = () => {
     setIsOpen((prev) => !prev);
   };
-  const navigateTo = useCallback(
-    (direction: string) => {
-      setDisplayDate((prevDate) => {
-        const newDate = new Date(prevDate);
-        let newSelectedDate = new Date(selectedDate);
 
-        switch (direction) {
-          case "prevDay":
-            newDate.setDate(prevDate.getDate() - 1);
-            newSelectedDate.setDate(newSelectedDate.getDate() - 1);
-            break;
-          case "nextDay":
-            newDate.setDate(prevDate.getDate() + 1);
-            newSelectedDate.setDate(newSelectedDate.getDate() + 1);
-            break;
-          case "prevWeek":
-            newDate.setDate(prevDate.getDate() - 7);
-            newSelectedDate.setDate(newSelectedDate.getDate() - 7);
-            break;
-          case "nextWeek":
-            newDate.setDate(prevDate.getDate() + 7);
-            newSelectedDate.setDate(newSelectedDate.getDate() + 7);
-            break;
-          case "prevMonth":
-            newDate.setMonth(prevDate.getMonth() - 1);
-            newSelectedDate.setMonth(newSelectedDate.getMonth() - 1);
-            break;
-          case "nextMonth":
-            newDate.setMonth(prevDate.getMonth() + 1);
-            newSelectedDate.setMonth(newSelectedDate.getMonth() + 1);
-            break;
-          case "prevYear":
-            newDate.setFullYear(prevDate.getFullYear() - 1);
-            newSelectedDate.setFullYear(newSelectedDate.getFullYear() - 1);
-            break;
-          case "nextYear":
-            newDate.setFullYear(prevDate.getFullYear() + 1);
-            newSelectedDate.setFullYear(newSelectedDate.getFullYear() + 1);
-            break;
-          default:
-            break;
-        }
+  // Inside your DatePickerProvider
+  const navigateTo = (direction: string) => {
+    setSelectedDate((currentDate) => {
+      if (!currentDate) return currentDate;
 
-        setSelectedDate(newSelectedDate);
-        return newDate;
-      });
-    },
-    [selectedDate]
-  );
+      const newDate = new Date(currentDate);
+
+      switch (direction) {
+        case "nextDay":
+          newDate.setDate(newDate.getDate() + 1);
+          break;
+        case "prevDay":
+          newDate.setDate(newDate.getDate() - 1);
+          break;
+        case "nextWeek":
+          newDate.setDate(newDate.getDate() + 7);
+          break;
+        case "prevWeek":
+          newDate.setDate(newDate.getDate() - 7);
+          break;
+        default:
+          return currentDate;
+      }
+
+      // Check if the month changed and update displayDate accordingly
+      if (newDate.getMonth() !== displayDate.getMonth()) {
+        setDisplayDate(new Date(newDate.getFullYear(), newDate.getMonth(), 1));
+      }
+
+      return newDate;
+    });
+  };
 
   const { ref } = useOutSideClick(() => setIsOpen(false));
   const contextValue = {
@@ -156,6 +140,7 @@ const DatePicker: FC<DatePickerProps> & {
         textColor={textColor}
         bgColor={bgColor}
       />
+
       <Toggler />
       {isOpen &&
         createPortal(

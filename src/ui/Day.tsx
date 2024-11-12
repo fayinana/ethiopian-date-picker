@@ -5,14 +5,14 @@ const Day = styled.span<{ active: boolean }>`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  width: 20px;
-  height: 20px;
-  padding: 0.4rem 0.5rem;
-  border-radius: 3px;
+  color: var(--text-color);
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0.2em 0.3em;
+  border-radius: 0.12em;
   font-weight: 600;
   background: ${(props) =>
     props.active ? "var(--primary-color)" : "var(--secondary-color)"};
-  color: ${(props) => (props.active ? "var(--text-color)" : "black")};
 
   &:hover {
     background: ${(props) =>

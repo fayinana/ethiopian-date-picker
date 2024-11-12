@@ -10,12 +10,27 @@ export default function App() {
       <DatePicker
         date={date}
         setDate={setDate}
-        primaryColor="#4ab2e2"
-        secondaryColor="#f8f8f8"
-        bgColor="#cdebf8"
-        textColor="#0f0152"
+        primaryColor="#e2544a"
+        secondaryColor="#534b4b"
+        bgColor="#1c6b8d"
+        textColor="#a79ddb"
+        width="1000px"
+        height="1000px"
+      >
+        <DatePicker.Header />
+        <DatePicker.Calendar />
+        <DatePicker.Footer />
+      </DatePicker>
+
+      <DatePicker
+        date={date}
+        setDate={setDate}
+        primaryColor="#46abc2"
+        secondaryColor="#f5f5f5"
+        bgColor="#f9f9f9"
+        textColor="#3318b7"
         width="100px"
-        height="200px"
+        height="100px"
       >
         <DatePicker.Header />
         <DatePicker.Calendar />

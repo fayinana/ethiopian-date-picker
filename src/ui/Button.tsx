@@ -22,10 +22,10 @@ const variations: Record<Variation, ReturnType<typeof css>> = {
 const Button = styled.button<{ variation: Variation }>`
   cursor: pointer;
   border: none;
-  max-width: 150px;
-  padding: 0.5rem 2rem;
-  border-radius: 5px;
-  font-size: 0.75rem;
+  max-width: 10em;
+  padding: 0.5em 2em;
+  border-radius: 0.3em;
+  font-size: 0.75em;
   text-transform: capitalize;
   font-weight: 500;
 

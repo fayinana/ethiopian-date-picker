@@ -1,23 +1,5 @@
 import styled from "styled-components";
 import { Variation } from "../types";
-
-// const variations: Record<Variation, ReturnType<typeof css>> = {
-//   primary: css`
-//     color: whitesmoke;
-//     background: #8692fa;
-//     &:hover {
-//       background: #7885fa;
-//     }
-//   `,
-//   secondary: css`
-//     color: black;
-//     background: #ffffff;
-//     &:hover {
-//       background: #f5f5f5;
-//     }
-//   `,
-// };
-
 export const StyledContainer = styled.div<{
   width: string;
   height: string;
@@ -25,13 +7,13 @@ export const StyledContainer = styled.div<{
 }>`
   position: absolute;
   min-width: ${(props) => props.width};
-  max-width: 400px;
+  max-width: 30em;
   min-height: ${(props) => props.height};
   background: var(--background-color);
   color: var(--text-color);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  padding: 1rem;
+  border-radius: 0.75em;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   left: ${(props) => props.position.x}px;
@@ -48,8 +30,8 @@ export const WeekDays = styled.div`
 export const GroupButton = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  padding-top: 1rem;
+  gap: 1em;
+  padding-top: 1em;
 `;
 
 export const StyledHeader = styled.div`
@@ -65,10 +47,10 @@ export const StyledHeader = styled.div`
 export const HeaderButton = styled.button`
   background: none;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.2em;
   color: var(--primary-color);
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.5em;
   transition: color 0.3s ease-in-out;
 
   &:hover {
@@ -101,7 +83,7 @@ export const Button = styled.button<{ variation: Variation }>`
 export const Day = styled.span<{ active: boolean }>`
   background: ${(props) =>
     props.active ? "var(--primary-color)" : "var(--secondary-color)"};
-  color: ${(props) => (props.active ? "var(--text-color)" : "black")};
+  color: var(--text-color);
 
   &:hover {
     background: ${(props) =>
