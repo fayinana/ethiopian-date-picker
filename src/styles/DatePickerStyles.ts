@@ -17,6 +17,7 @@ export const StyledContainer = styled.div<{
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border-radius: 0.75em;
   padding: 1em;
+  scale: 0.65;
   display: flex;
   flex-direction: column;
   left: ${(props) => props.position.x}px;
@@ -32,13 +33,12 @@ export const WeekDays = styled.div`
 
 export const GroupButton = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 1em;
-  padding-top: 1em;
 `;
 const variations: Record<Variation, ReturnType<typeof css>> = {
   primary: css`
-    color: var(--text-color);
+    color: var(--secondary-color);
     background: var(--primary-color);
     &:hover {
       background: var(--primary-color);
@@ -70,7 +70,7 @@ export const FooterButton = styled.button<{ variation: Variation }>`
       ? "var(--primary-color)"
       : "var(--secondary-color)"};
   color: ${(props) =>
-    props.variation === "primary" ? "var(--text-color)" : "white"};
+    props.variation === "primary" ? "var(--secondary-color)" : "var(--text-color)"};
   
   border: none;
   border-radius: 8px;
@@ -79,7 +79,7 @@ export const FooterButton = styled.button<{ variation: Variation }>`
   
   /* Adding hover effect */
   &:hover {
-    
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     background: ${(props) =>
       props.variation === "primary"
         ? "var(--primary-color)"

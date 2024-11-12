@@ -34,8 +34,8 @@ const DatePicker: FC<DatePickerProps> & {
   children,
   date,
   setDate,
-  width = "100%",
-  height = "100%",
+  width = "300px",
+  height = "300px",
   style = {},
   daysName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   primaryColor,
@@ -43,7 +43,7 @@ const DatePicker: FC<DatePickerProps> & {
   textColor,
   bgColor,
   fontFamily,
-  isDarkMode = true,
+  isDarkMode,
 }) => {
   const dateValue = new Date(date || new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
