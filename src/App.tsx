@@ -10,7 +10,6 @@ export default function App() {
       <DatePicker
         date={date}
         setDate={setDate}
-        isDarkMode
         >
       
         <DatePicker.Header />

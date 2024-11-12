@@ -38,7 +38,7 @@ export const GroupButton = styled.div`
 `;
 const variations: Record<Variation, ReturnType<typeof css>> = {
   primary: css`
-    color: var(--secondary-color);
+    color: white;
     background: var(--primary-color);
     &:hover {
       background: var(--primary-color);
