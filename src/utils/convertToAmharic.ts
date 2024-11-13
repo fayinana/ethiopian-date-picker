@@ -38,45 +38,42 @@ export const toAmharicNumerals = (num: number) => {
       "\u138C", // 9000
     ];
   
-    // Handle years (which can be more than 100)
     if (num >= 100) {
-      const hundreds = Math.floor(num / 100); // Extract hundreds
-      const tens = Math.floor((num % 100) / 10); // Extract tens
-      const units = num % 10; // Extract units
+      const tousands = Math.floor(num / 1000); 
+      const hundreds = Math.floor((num % 1000) / 100); 
+      const tens = Math.floor((num % 100) / 10);
+      const units = num % 10;
   
       let result = "";
-  
-      // For hundreds part (using the 100's symbols like 100, 200, etc.)
+      if (tousands > 0) {
+        result += amharicNumbers[9 + tousands - 1] + "፻"; 
+      }
       if (hundreds > 0) {
-        result += "፻"; // Hundreds part, appended with "፻" symbol for 100s
+        result += amharicNumbers[hundreds - 1] + "፻"; 
       }
   
       // For tens part
       if (tens > 0) {
-        result += amharicNumbers[8 + tens - 1] + "፲"; // Tens part, appended with "፲" symbol for tens
+        result += amharicNumbers[9 + tens - 1];
       }
   
-      // For units part (no suffix)
       if (units > 0) {
-        result += amharicNumbers[units - 1]; // Units part
+        result += amharicNumbers[units - 1]; 
       }
   
       return result;
     } else if (num <= 10) {
-      // For numbers 1-10, return the corresponding Amharic numeral directly
       return amharicNumbers[num - 1];
     } else if (num < 100) {
-      // Handle numbers between 11 and 99
       const tens = Math.floor(num / 10) * 10;
       const units = num % 10;
   
-      const tensPart = amharicNumbers[8 + tens / 10]; // Get the Amharic numeral for tens
-      const unitsPart = units > 0 ? amharicNumbers[units - 1] : ""; // Get units if they exist
+      const tensPart = amharicNumbers[8 + tens / 10]; 
+      const unitsPart = units > 0 ? amharicNumbers[units - 1] : ""; 
   
-      // Combine tens and units with no separator
       return tensPart + unitsPart;
     } else {
-      return num.toString(); // For any other number, return it as a string (fallback)
+      return num.toString();
     }
   };
   
