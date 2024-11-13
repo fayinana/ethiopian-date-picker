@@ -17,7 +17,7 @@ export const StyledContainer = styled.div<{
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border-radius: 0.75em;
   padding: 1em;
-  scale: 0.65;
+  font-size: 0.8rem;
   display: flex;
   flex-direction: column;
   left: ${(props) => props.position.x}px;
@@ -57,23 +57,12 @@ export const FooterButton = styled.button<{ variation: Variation }>`
   cursor: pointer;
   border: none;
   max-width: 200px;
-  padding: 01em 2em;
-  border-radius: 0.3em;
-  font-size: 0.75em;
   text-transform: capitalize;
+  padding: 0.7em 3.5em;
   font-weight: 500;
-  padding: 1em 2em;
-  font-size: 1rem;
-  font-weight: 500;
-  background: ${(props) =>
-    props.variation === "primary"
-      ? "var(--primary-color)"
-      : "var(--secondary-color)"};
-  color: ${(props) =>
-    props.variation === "primary" ? "var(--secondary-color)" : "var(--text-color)"};
-  
   border: none;
-  border-radius: 8px;
+  border-radius: 0.5em;
+  font-size: 0.7rem;
   cursor: pointer;
   transition: all 0.3s ease;
   
@@ -84,7 +73,6 @@ export const FooterButton = styled.button<{ variation: Variation }>`
       props.variation === "primary"
         ? "var(--primary-color)"
         : "var(--secondary-color)"};
-    background-color: #5050dc;
   }
   
   ${(props) => variations[props.variation]}
@@ -95,7 +83,6 @@ export const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1rem;
-  font-size: 1.1rem;
   color: var(--text-color);
   font-weight: 500;
 `;
@@ -106,41 +93,39 @@ export const DateScroll = styled.span`
   letter-spacing: 0.5px;
   word-break: break-word;
   white-space: nowrap;
-  width: 150px;
+  width: 100px;
 `;
 
 export const HeaderButton = styled.button`
 background: none;
 border: none;
-font-size: 1.2em;
 cursor: pointer;
 border-radius: 10px;
 color: var(--text-color);
-padding: 10px;
+padding: 7.5px;
 margin: 5px;
 transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 
 &:hover {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
 }
 `;
 
 
 export const DayButton = styled.span<{ active: boolean,isDay: boolean }>`
 
-    width: 30px;
-    height: 30px;
+    width: 13px;
+    height: 13px;
     font-weight: 500;
-    font-size: 16px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 7.5px;
     padding: 8px;
-    margin: 5px;
+    margin: 2px;
     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 
           background: ${(props) =>

@@ -3,11 +3,10 @@ import { useDatePickerContext } from "../context/DatePickerProvider";
 import { WeekDays,DayButton } from "../styles/DatePickerStyles";
 import Day from "./Day";
 import useKeyboardNavigation from "../hooks/useKeyboardNavigation";
-
 const Calendar: FC = () => {
   useKeyboardNavigation();
 
-  const { displayDate, daysName } = useDatePickerContext();
+  const { displayDate, daysName, isAmharic } = useDatePickerContext(); // Access isAmharic from context
   const daysInMonth = new Date(
     displayDate.getFullYear(),
     displayDate.getMonth() + 1,
@@ -27,14 +26,18 @@ const Calendar: FC = () => {
   return (
     <WeekDays>
       {daysName.map((d) => (
-        <DayButton key={d} isDay={d == null} active={false} style={{ textAlign: "center" }}>
+        <DayButton
+          key={d}
+          isDay={d == null}
+          active={false}
+          style={{ textAlign: "center" }}
+        >
           {d}
         </DayButton>
       ))}
-    {days.map((day, index) => (
-      <Day key={index} day={day} isDay={day !== null} />
-    ))}
-
+      {days.map((day, index) => (
+        <Day key={index} day={day} isDay={day !== null} isAmharic={isAmharic} /> 
+      ))}
     </WeekDays>
   );
 };

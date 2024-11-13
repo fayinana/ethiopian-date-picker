@@ -10,10 +10,14 @@ export default function App() {
       <DatePicker
         date={date}
         setDate={setDate}
+        primaryColor="#9e4545"
+        secondaryColor="#5c58582d"
+        isAmharic = {false}
+        isDarkMode = {false}
         >
       
         <DatePicker.Header />
-        <DatePicker.Calendar />
+        <DatePicker.Calendar/>
         <DatePicker.Footer />
       </DatePicker>
     </div>

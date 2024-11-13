@@ -1,13 +1,15 @@
 import { FC } from "react";
 import { useDatePickerContext } from "../context/DatePickerProvider";
 import { DayButton } from "../styles/DatePickerStyles";
+import { toAmharicNumerals } from "../utils/convertToAmharic";
 
 interface DayProps {
   day: number | null;
   isDay: boolean;
+  isAmharic: boolean;
 }
 
-const Day: FC<DayProps> = ({ day, isDay }) => {
+const Day: FC<DayProps> = ({ day, isDay, isAmharic }) => {
   const { displayDate, selectedDate, setSelectedDate } = useDatePickerContext();
   const isActive =
     selectedDate?.getDate() === day &&
@@ -24,7 +26,7 @@ const Day: FC<DayProps> = ({ day, isDay }) => {
         )
       }
     >
-      {day || ""}
+      {day ? (isAmharic ? toAmharicNumerals(day) : day) : ""}
     </DayButton>
   );
 };

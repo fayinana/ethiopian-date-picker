@@ -15,7 +15,7 @@ const Footer: FC = () => {
         Cancel
       </FooterButton>
       <FooterButton variation="primary" onClick={handleSubmit}>
-        Submit
+        Set
       </FooterButton>
     </GroupButton>
   );

@@ -24,6 +24,7 @@ interface DatePickerProps {
   textColor?: string;
   fontFamily?: string;
   isDarkMode?: boolean;
+  isAmharic?: boolean; // Add isAmharic to DatePickerProps
 }
 
 const DatePicker: FC<DatePickerProps> & {
@@ -37,13 +38,13 @@ const DatePicker: FC<DatePickerProps> & {
   width = "300px",
   height = "300px",
   style = {},
-  daysName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   primaryColor,
   secondaryColor,
   textColor,
   bgColor,
   fontFamily,
   isDarkMode,
+  isAmharic, // Set a default value
 }) => {
   const dateValue = new Date(date || new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -54,7 +55,12 @@ const DatePicker: FC<DatePickerProps> & {
     y: 0,
   });
   const dateFormat = "MM/dd/yyyy";
+  // Define English and Amharic day names
+  const englishDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const amharicDays = ["እሑድ", "ሰኞ", "ማክሰኞ", "ረቡዕ", "ሐሙስ", "ዓርብ", "ቅዳሜ"];
 
+  // Use Amharic day names if isAmharic is true
+  const daysNameToUse = isAmharic ? amharicDays : englishDays;
   const goToNextMonth = useCallback(() => {
     setDisplayDate(
       (prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() + 1, 1)
@@ -132,8 +138,9 @@ const DatePicker: FC<DatePickerProps> & {
     setDate,
     position,
     setPosition,
-    daysName,
-    navigateTo, // Make sure navigateTo is part of the context
+    daysName: daysNameToUse, 
+    navigateTo,
+    isAmharic,
   };
 
   return (
