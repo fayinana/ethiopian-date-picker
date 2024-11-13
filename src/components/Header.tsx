@@ -6,9 +6,20 @@ import { toAmharicNumerals } from "../utils/convertToAmharic";
 
 // Amharic month names
 const amharicMonths = [
-  "መስከምት", "ጥቅምት", "ሕዳር", "ታሕሳስ", "ግንቦት", 
-  "ሰኔ", "ሐምሌ", "ነሐሴ", "መስከምት", "ጥቅምት", "ሕዳር", "ታሕሳስ"
+  "መስከረም", // Meskerem
+  "ጥቅምት",   // Tikimt
+  "ህዳር",   // Hidar
+  "ታህሳስ",   // Tahsas
+  "ጥር",     // Tir
+  "የካቲት",   // Yekatit
+  "መጋቢት",   // Megabit
+  "ሚያዝያ",   // Miazia
+  "ግንቦት",   // Ginbot
+  "ሰኔ",     // Sene
+  "ሐምሌ",   // Hamle
+  "ነሐሴ",   // Nehasse
 ];
+
 
 const Header: FC = () => {
   const {
