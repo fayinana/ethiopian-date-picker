@@ -15,8 +15,8 @@ export default function App() {
         textColor=""
         bgColor=""
         fontFamily=""
-        isAmharic = {false}
-        isDarkMode = {false}
+        isAmharic
+        isDarkMode 
         >
       
         <DatePicker.Header />
