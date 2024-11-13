@@ -12,22 +12,62 @@ export const toAmharicNumerals = (num: number) => {
       "\u1372", // 10
       "\u1373", // 20
       "\u1374", // 30
+      "\u1375", // 40
+      "\u1376", // 50
+      "\u1377", // 60
+      "\u1378", // 70
+      "\u1379", // 80
+      "\u137A", // 90
+      "\u137B", // 100
+      "\u137C", // 200
+      "\u137D", // 300
+      "\u137E", // 400
+      "\u137F", // 500
+      "\u1380", // 600
+      "\u1381", // 700
+      "\u1382", // 800
+      "\u1383", // 900
     ];
   
-    if (num <= 10) {
-      // For numbers 1–10, return the corresponding Amharic numeral directly
+    // Handle years (which can be more than 100)
+    if (num >= 100) {
+      const hundreds = Math.floor(num / 100); // Extract hundreds
+      const tens = Math.floor((num % 100) / 10); // Extract tens
+      const units = num % 10; // Extract units
+  
+      let result = "";
+  
+      // For hundreds part (using the 100's symbols like 100, 200, etc.)
+      if (hundreds > 0) {
+        result += "፻"; // Hundreds part, appended with "፻" symbol for 100s
+      }
+  
+      // For tens part
+      if (tens > 0) {
+        result += amharicNumbers[8 + tens - 1] + "፲"; // Tens part, appended with "፲" symbol for tens
+      }
+  
+      // For units part (no suffix)
+      if (units > 0) {
+        result += amharicNumbers[units - 1]; // Units part
+      }
+  
+      return result;
+    } else if (num <= 10) {
+      // For numbers 1-10, return the corresponding Amharic numeral directly
       return amharicNumbers[num - 1];
     } else if (num < 100) {
+      // Handle numbers between 11 and 99
       const tens = Math.floor(num / 10) * 10;
       const units = num % 10;
   
       const tensPart = amharicNumbers[8 + tens / 10]; // Get the Amharic numeral for tens
       const unitsPart = units > 0 ? amharicNumbers[units - 1] : ""; // Get units if they exist
   
-      // Combine tens and units with no separator as per Amharic numeral convention
+      // Combine tens and units with no separator
       return tensPart + unitsPart;
     } else {
-      return num.toString(); // For numbers beyond 99, return the number as a fallback
+      return num.toString(); // For any other number, return it as a string (fallback)
     }
   };
   

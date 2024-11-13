@@ -138,9 +138,15 @@ const DatePicker: FC<DatePickerProps> & {
     setDate,
     position,
     setPosition,
-    daysName: daysNameToUse, 
+    daysName: daysNameToUse,
     navigateTo,
     isAmharic,
+    primaryColor, // Ensure these are passed in correctly
+    secondaryColor,
+    bgColor,
+    textColor,
+    fontFamily,
+    isDarkMode,
   };
 
   return (

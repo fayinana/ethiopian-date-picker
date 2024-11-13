@@ -1,8 +1,8 @@
 export interface DatePickerContextType {
   selectedDate: Date | null;
-  setSelectedDate: (date: Date | string | null) => void;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
   displayDate: Date;
-  setDisplayDate: (date: Date) => void;
+  setDisplayDate: React.Dispatch<React.SetStateAction<Date>>;
   goToNextMonth: () => void;
   goToPrevMonth: () => void;
   goToNextYear: () => void;
@@ -11,13 +11,18 @@ export interface DatePickerContextType {
   togglePicker: () => void;
   dateFormat: string;
   date: Date | null;
-  setDate: (date: Date | string | null) => void;
+  setDate: (date: Date | null) => void;
   position: { x: number; y: number };
-  setPosition: (position: { x: number; y: number }) => void;
+  setPosition: React.Dispatch<React.SetStateAction<{ x: number; y: number }>>;
   daysName: string[];
-  primaryColor: string;
-  secondaryColor: string;
-  navigateTo: (direction: string) => void; // Add the navigateTo function here
+  navigateTo: (direction: string) => void;
+  isAmharic?: boolean;
+  primaryColor?: string; // Add primaryColor and other properties if missing
+  secondaryColor?: string;
+  bgColor?: string;
+  textColor?: string;
+  fontFamily?: string;
+  isDarkMode?: boolean;
 }
 
 export interface PickerProps {

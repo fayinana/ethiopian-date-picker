@@ -6,7 +6,7 @@ import { toAmharicNumerals } from "../utils/convertToAmharic";
 interface DayProps {
   day: number | null;
   isDay: boolean;
-  isAmharic: boolean;
+  isAmharic?: boolean;
 }
 
 const Day: FC<DayProps> = ({ day, isDay, isAmharic }) => {
