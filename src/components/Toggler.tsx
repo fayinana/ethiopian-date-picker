@@ -20,13 +20,40 @@ function Toggler() {
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     const rect = e.currentTarget.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+  
+    const pickerHeight = 410; // Approximate height of the date picker
+    const pickerWidth = 310; // Approximate width of the date picker
+    const margin = 8; // Space between toggler and picker
+  
+    // Calculate x position to ensure it stays within the viewport
+    let calculatedX = rect.left;
+    if (calculatedX + pickerWidth > viewportWidth) {
+      calculatedX = viewportWidth - pickerWidth - margin - 22;
+    }
+    if (calculatedX < 0) {
+      calculatedX = margin;
+    }
+    // Default Y position (below the toggler)
+    let calculatedY = rect.top + rect.height + window.scrollY + margin;
+  
+    // If there's not enough space at the bottom, place it above the toggler
+    if (calculatedY + pickerHeight > viewportHeight + window.scrollY) {
+      calculatedY = rect.top - 300 - margin; // Adjust to place above the toggler
+  
+      // Ensure it doesn't go too far up
+      if (calculatedY < window.scrollY) {
+        calculatedY = window.scrollY + margin + 200; // Align to the visible screen top
+      }
+    }
+  
+    // Update position and toggle the picker
+    setPosition({ x: calculatedX, y: calculatedY });
     togglePicker();
-    setPosition({
-      x: rect.left,
-      y: rect.top + rect.height + window.scrollY + 8,
-    });
   }
-
+  
+  
   return (
     <button
       onClick={handleClick}
