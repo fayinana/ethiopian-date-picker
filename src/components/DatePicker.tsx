@@ -2,7 +2,7 @@
 import { createPortal } from "react-dom";
 import { DatePickerContextProvider } from "../context/DatePickerProvider";
 import { StyledContainer } from "../styles/DatePickerStyles";
-import { FC, useCallback, useState } from "react";
+import { ReactNode, FC, useCallback, useState } from "react";
 import { useOutSideClick } from "../hooks/useOutSideClick";
 import Header from "./Header";
 import Calendar from "./Calendar";
@@ -25,6 +25,7 @@ interface DatePickerProps {
   fontFamily?: string;
   isDarkMode?: boolean;
   isAmharic?: boolean; // Add isAmharic to DatePickerProps
+  input: ReactNode
 }
 
 const DatePicker: FC<DatePickerProps> & {
@@ -45,6 +46,7 @@ const DatePicker: FC<DatePickerProps> & {
   fontFamily,
   isDarkMode,
   isAmharic, // Set a default value
+  input
 }) => {
   const dateValue = new Date(date || new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -121,7 +123,7 @@ const DatePicker: FC<DatePickerProps> & {
     });
   };
 
-  const { ref } = useOutSideClick(() => setIsOpen(false));
+  const  { ref }   = useOutSideClick(() => setIsOpen(false));
   const contextValue = {
     selectedDate,
     setSelectedDate,
@@ -160,7 +162,7 @@ const DatePicker: FC<DatePickerProps> & {
         isDarkMode={isDarkMode}
       />
 
-      <Toggler />
+      <Toggler >{input}</Toggler>
       {isOpen &&
         createPortal(
           <StyledContainer

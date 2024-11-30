@@ -18,6 +18,8 @@ export const StyledContainer = styled.div<{
   border-radius: 0.75em;
   padding: 1em;
   font-size: 0.8rem;
+  scale: 0.8;
+  z-index: 99999999999999;
   display: flex;
   flex-direction: column;
   left: ${(props) => props.position.x}px;
